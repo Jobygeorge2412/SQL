@@ -1,0 +1,64 @@
+SELECT * FROM `bigquery-public-data.austin_incidents.incidents_2008` LIMIT 10
+
+SELECT *
+FROM `bigquery-public-data.austin_crime.crime`
+ORDER BY clearance_status ASC;
+
+SELECT *
+FROM `bigquery-public-data.austin_crime.crime`
+ORDER BY clearance_status;
+
+SELECT *
+FROM `bigquery-public-data.austin_crime.crime`
+ORDER BY description ;
+
+SELECT *
+FROM `bigquery-public-data.austin_crime.crime`
+WHERE description = 'RAPE';
+
+SELECT *
+FROM `bigquery-public-data.austin_311.311_service_requests`
+WHERE owning_department = 'Animal Services Office';
+
+SELECT *
+FROM `bigquery-public-data.austin_311.311_service_requests`
+WHERE owning_department = 'Animal Services Office' OR owning_department = 'Public Health';
+
+SELECT *
+FROM `bigquery-public-data.austin_311.311_service_requests`
+WHERE unique_key = '20-00420395';
+
+SELECT *
+FROM `bigquery-public-data.austin_311.311_service_requests`
+WHERE complaint_description IN('Lost Item in Storm Drainage System', 'Austin Code - Coronavirus', 'Coyote Complaints');
+
+SELECT *
+FROM `bigquery-public-data.austin_311.311_service_requests`
+WHERE complaint_description IN('Lost Item in Storm Drainage System', 'Austin Code - Coronavirus') AND unique_key = '20-00420395';
+
+SELECT DISTINCT owning_department
+FROM `bigquery-public-data.austin_311.311_service_requests`;
+
+SELECT COUNT(owning_department)
+FROM `bigquery-public-data.austin_311.311_service_requests`;
+
+SELECT COUNT(unique_key)
+FROM `bigquery-public-data.austin_311.311_service_requests` 
+WHERE status= 'closed' AND complaint_description= 'Coyote Complaints';
+
+SELECT COUNT(owning_department),owning_department
+FROM `bigquery-public-data.austin_311.311_service_requests`
+GROUP BY owning_department;
+
+SELECT * FROM `bigquery-public-data.austin_311.311_service_requests`
+WHERE complaint_description LIKE '%Coronavirus';
+
+SELECT 311_service_requests.unique_key, 311_service_requests.complaint_description,crime.address
+ON 311_service_requests
+JOIN crime
+311_service_requests.unique_key = crime.unique_key
+
+SELECT 311_service_requests.unique_key, 311_service_requests.complaint_description,crime.address
+ON 311_service_requests
+LEFT JOIN crime
+311_service_requests.unique_key = crime.unique_key
